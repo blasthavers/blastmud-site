@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "BlastMud",
+  "short_name": "BlastMud",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#000",
+  "description": "A post-apocalyptic multi user dungeon game",
+  "icons": [{
+    "src": "images/logo48.png",
+    "sizes": "48x48",
+    "type": "image/png"
+  }, {
+    "src": "images/logo72.png",
+    "sizes": "72x72",
+    "type": "image/png"
+  }, {
+    "src": "images/logo96.png",
+    "sizes": "96x96",
+    "type": "image/png"
+  }, {
+    "src": "images/logo144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "images/logo168.png",
+    "sizes": "168x168",
+    "type": "image/png"
+  }, {
+    "src": "images/logo192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }],
+  "related_applications": [{
+    "platform": "play",
+    "url": "https://play.google.com/store/apps/details?id=org.blastmud.game"
+  }]
+}
