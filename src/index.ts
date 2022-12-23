@@ -1,13 +1,17 @@
 import {Terminal} from 'xterm';
 import { Readline } from "xterm-readline";
+import { FitAddon } from 'xterm-addon-fit';
 
 let isScreened = false, sendLessExplicit = false;
     
 const term = new Terminal();
 const rl = new Readline();
 term.options.scrollback = 1000;
+const fit = new FitAddon();
+term.loadAddon(fit);
 term.loadAddon(rl);
 term.open(document.getElementById('console'));
+fit.fit();
 
 let lineHandler = (l: string) => { console.log("Default handler", l); };
 
@@ -25,6 +29,7 @@ function connectTerm() {
   const wsurl = document.location.href.replace(/^https:\/\/(.*)\/game(.html)?(\?.*)?(\#.*)?/, 'wss:\/\/$1/wsgame');
   let webSocket = new WebSocket(wsurl);
   webSocket.addEventListener('open', (event) => {
+    fit.fit();
     lineHandler = (l: string) => { console.log("Send handler", l); webSocket.send(l); }
     term.writeln("\x1b[0mConnected");
   });
@@ -36,6 +41,7 @@ function connectTerm() {
     term.writeln("\x1b[0mNetwork error with connection.");
   });
   webSocket.addEventListener('message', (msg) => {
+    fit.fit();
     term.write(msg.data);
   })
 }
