@@ -29,6 +29,8 @@ function connectTerm() {
   const wsurl = document.location.href.replace(/^https:\/\/(.*)\/game(.html)?(\?.*)?(\#.*)?/, 'wss:\/\/$1/wsgame');
   let webSocket = new WebSocket(wsurl);
   webSocket.addEventListener('open', (event) => {
+    if (sendLessExplicit)
+      webSocket.send("less_explicit_mode");
     fit.fit();
     lineHandler = (l: string) => { console.log("Send handler", l); webSocket.send(l); }
     term.writeln("\x1b[0mConnected");
@@ -43,7 +45,7 @@ function connectTerm() {
   webSocket.addEventListener('message', (msg) => {
     fit.fit();
     term.write(msg.data);
-  })
+  });
 }
 
 function over18() {
