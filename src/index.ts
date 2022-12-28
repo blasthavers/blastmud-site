@@ -44,7 +44,8 @@ function connectTerm() {
   });
   webSocket.addEventListener('message', (msg) => {
     fit.fit();
-    term.write(msg.data);
+    term.write(msg.data.replaceAll("\r", "")
+      .replaceAll("\n", "\r\n"));
   });
 }
 
